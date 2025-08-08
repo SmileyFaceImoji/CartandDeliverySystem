@@ -1,0 +1,90 @@
+﻿@using CartandDeliverySystem.Services
+@model List<CartItem>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container">
+    <h1>Shopping Cart</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            <h4>Your cart is empty</h4>
+            <a asp-controller="Products" asp-action="Index" class="btn btn-primary">Continue Shopping</a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                    {
+                                        <img src="@item.ImageUrl" alt="@item.Name" style="width: 80px; height: 80px; object-fit: cover;" class="me-3">
+                                    }
+                                    <div>
+                                        <h5 class="mb-0">@item.Name</h5>
+                                        <small class="text-muted">SKU: @item.ProductId</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">@item.Price.ToString("C")</td>
+                            <td class="align-middle">
+                                <form asp-action="UpdateQuantity" method="post">
+                                    <input type="hidden" name="productId" value="@item.ProductId" />
+                                    <div class="input-group" style="width: 130px;">
+                                        <input type="number" name="quantity" value="@item.Quantity" min="1" max="99"
+                                               class="form-control text-center">
+                                        <button type="submit" class="btn btn-outline-primary">
+                                            Update
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="align-middle fw-bold">@item.Subtotal.ToString("C")</td>
+                            <td class="align-middle">
+                                <form asp-action="RemoveFromCart" method="post">
+                                    <input type="hidden" name="productId" value="@item.ProductId" />
+                                    <button type="submit" class="btn btn-danger">
+                                        Remove
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot class="table-light">
+                    <tr>
+                        <td colspan="3" class="text-end"><h5 class="mb-0">Total:</h5></td>
+                        <td colspan="2"><h5 class="mb-0">@Model.Sum(i => i.Subtotal).ToString("C")</h5></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a asp-controller="Products" asp-action="Index" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Continue Shopping
+            </a>
+            <a asp-controller="Checkout" asp-action="ConfirmAddress" class="btn btn-success">
+                Proceed to Checkout <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    }
+</div>

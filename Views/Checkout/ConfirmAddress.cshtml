@@ -1,0 +1,62 @@
+﻿@using static CartandDeliverySystem.Controllers.CheckoutController
+@model ShippingViewModel
+
+<div class="container mt-4">
+    <h2>Shipping Information</h2>
+
+    <form asp-action="ConfirmAddress" method="post" class="mt-3">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Full Name -->
+                <div class="mb-3">
+                    <label asp-for="FullName" class="form-label"></label>
+                    <input asp-for="FullName" class="form-control" required>
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <!-- Address -->
+                <div class="mb-3">
+                    <label asp-for="Address" class="form-label"></label>
+                    <input asp-for="Address" class="form-control" required>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <!-- City -->
+                <div class="mb-3">
+                    <label asp-for="City" class="form-label"></label>
+                    <input asp-for="City" class="form-control" required>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <!-- Province -->
+                <div class="mb-3">
+                    <label asp-for="Province" class="form-label"></label>
+                    <input asp-for="Province" class="form-control" required>
+                    <span asp-validation-for="Province" class="text-danger"></span>
+                </div>
+
+                <!-- Postal Code -->
+                <div class="mb-3">
+                    <label asp-for="PostalCode" class="form-label"></label>
+                    <input asp-for="PostalCode" class="form-control" required>
+                    <span asp-validation-for="PostalCode" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a asp-controller="Cart" asp-action="Index" class="btn btn-outline-secondary">
+                ← Back to Cart
+            </a>
+            <button type="submit" class="btn btn-primary">
+                Continue to Payment →
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

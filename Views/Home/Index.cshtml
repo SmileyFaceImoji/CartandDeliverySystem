@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "E-Commerce System Overview";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4">E-Commerce Platform</h1>
+        <p class="lead">Final Project Implementation</p>
+        <div class="alert alert-warning mt-4">
+            <strong>Important Note:</strong> Product stock deduction after purchase is not implemented
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">System Functionalities</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h4>✅ Fully Implemented Features</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Product Catalog</strong> - Browse products with card display
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Shopping Cart</strong> - Add/remove items, update quantities
+                            </li>
+                            <li class="list-group-item">
+                                <strong>User Authentication</strong> - Register, login, and user roles
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Checkout Process</strong> - Shipping address collection
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Stripe Payment Integration</strong> - Real payment processing
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Order Management</strong> - Save orders with items to database
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Driver Delivery Tracking</strong> - Update order status (Driver role)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h4>⚠️ Known Limitations</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Stock Management</strong> - Product quantities are not reduced after purchase
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Admin Interface</strong> - Basic product management only
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Order History</strong> - Simple view without advanced filtering
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h3 class="mb-0">Testing Instructions</h3>
+                </div>
+                <div class="card-body">
+                    <h5>Payment Testing</h5>
+                    <p>Use these test card numbers for Stripe payments:</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Card Number</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>4242 4242 4242 4242</code></td>
+                                    <td>Successful payment (Visa)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>4000 0000 0000 0002</code></td>
+                                    <td>Payment failure</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5 class="mt-4">User Roles</h5>
+                    <ul>
+                        <li><strong>Customer:</strong> Browse, add to cart, checkout</li>
+                        <li><strong>Driver:</strong> View deliveries, update status</li>
+                        <li><strong>Admin:</strong> Manage products (add/edit)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">Getting Started</h3>
+                </div>
+                <div class="card-body">
+                    <ol>
+                        <li>Register as a new user</li>
+                        <li>Browse products and add items to your cart</li>
+                        <li>Proceed to checkout and enter shipping information</li>
+                        <li>Complete payment using test card <code>4242 4242 4242 4242</code></li>
+                        <li>View your order confirmation</li>
+                        <li>(Admin) Add products at <code>/Products/Create</code></li>
+                        <li>(Driver) Update delivery status at <code>/Driver/Deliveries</code></li>
+                    </ol>
+
+                    <div class="alert alert-info mt-3">
+                        <strong>Note:</strong> To access admin/driver features, update user roles in the database
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

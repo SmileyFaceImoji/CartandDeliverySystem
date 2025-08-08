@@ -1,0 +1,71 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    transition: transform 0.3s;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+.card-header {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    padding: 15px 20px;
+}
+
+.list-group-item {
+    padding: 15px 20px;
+}
+
+.display-4 {
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.lead {
+    color: #7f8c8d;
+    font-size: 1.5rem;
+}
+
+.alert-warning {
+    border-left: 5px solid #e67e22;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+code {
+    background-color: #f8f9fa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.table th {
+    background-color: #f1f2f6;
+}
