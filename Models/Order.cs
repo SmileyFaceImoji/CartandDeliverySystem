@@ -29,7 +29,11 @@ namespace CartandDeliverySystem.Models
             Recieved,
             Prepping,
             Out,
-            Delivered
+            Delivered,
+            HeldUp
         }
+
+        public DateTime? DeliveredAt { get; set; }
+        public string DriverUserId { get; set; }
     }
 }

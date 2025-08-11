@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Order>
+
+<h2>Delivery Management</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.FullName</td>
+                <td>
+                    <span class="badge
+                        @(order.OrderStatus == Order.StatusOrder.Delivered ? "bg-success" :
+                          order.OrderStatus == Order.StatusOrder.HeldUp ? "bg-danger" :
+                          "bg-warning")">
+                        @order.OrderStatus
+                    </span>
+                </td>
+                <td>
+                    <form method="post" asp-action="UpdateStatus">
+                        <input type="hidden" name="orderId" value="@order.OrderId" />
+                        <select name="status" class="form-select form-select-sm">
+                            @foreach (Order.StatusOrder status in Enum.GetValues(typeof(Order.StatusOrder)))
+                            {
+                                <option value="@status"
+                                        selected="@(status == order.OrderStatus)">
+                                    @status
+                                </option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary mt-1">
+                            Update
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
