@@ -14,15 +14,16 @@ namespace CartandDeliverySystem.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly CartService _cartService;
-        
-        public CheckoutController(ApplicationDbContext context, CartService cartService)
+        private readonly string _stripeSecretKey;
+
+        public CheckoutController(ApplicationDbContext context, CartService cartService, IConfiguration configuration)
         {
             _context = context;
             _cartService = cartService;
+            _stripeSecretKey = configuration["Stripe:SecretKey"];
+            StripeConfiguration.ApiKey = _stripeSecretKey;
         }
-        //Hide this API key in the appsettings.json in production.
-        //This is just for simplicity
-        private readonly string StripeSecret = "sk_test_51P3ELjFokx3M8JKGyNFMiHZqMrb1xTzAdHuofa7ZXT9YIQQmpihiNnG1lkBjH2CGp7YmEImpnGzUfKSHEWAhV1Vg00bDYVTbxX";
+        
 
         [HttpGet]
         public IActionResult ConfirmAddress()
@@ -47,7 +48,7 @@ namespace CartandDeliverySystem.Controllers
 
         public IActionResult Pay()
         {
-            StripeConfiguration.ApiKey = StripeSecret;
+            StripeConfiguration.ApiKey = _stripeSecretKey;
             //getting the cart in its session
             var cartItems = _cartService.GetItems().ToList();
             if (!cartItems.Any()) return RedirectToAction("Index", "Cart");
